@@ -481,15 +481,15 @@ var inkHighlightRules = function() {
             }]
         }],
 
-        "#animation": [{
+        "#animationSwitch": [{
             regex: /(\[)(anim\s*\=\s*)(\w+)/,
             token: [
-                "animation.punctuation",        // [
-                "animation",                    // "anim="
-                "animation.name"                // animation_name (in Godot)
+                "animationSwitch.punctuation",        // [
+                "animationSwitch",                    // "anim="
+                "animationSwitch.name"                // animationSwitch_name (in Godot)
             ],
             push: [{
-                token: "animation.punctuation", // ]
+                token: "animationSwitch.punctuation", // ]
                 regex: /]/,
                 next: "pop"
             },
@@ -503,7 +503,33 @@ var inkHighlightRules = function() {
                 include: "#tags"
             },
             {
-                defaultToken: "animation"
+                defaultToken: "animationSwitch"
+            }]
+        }],
+
+        "#animationResume": [{
+            regex: /(\[)(resume\s*anim)/,
+            token: [
+                "animationResume.start",              // [ 
+                "animationResume",                    // "anim"
+                "animationResume.name"                // animationResume_name (in Godot)
+            ],
+            push: [{
+                token: "animationResume.end", // ]
+                regex: /]/,
+                next: "pop"
+            },
+            {
+                include: "#comments"
+            },            
+            {
+                include: "#mixedContent"
+            },            
+            {
+                include: "#tags"
+            },
+            {
+                defaultToken: "animationResume"
             }]
         }],
 
@@ -595,10 +621,12 @@ var inkHighlightRules = function() {
             include: "#logicLine"
         }, {
             include: "#pause"
-        },{
+        }, {
             include: "#textspeed"
-        },{
-            include: "#animation"
+        }, {
+            include: "#animationSwitch"
+        }, {
+            include: "#animationResume"
         }, {
             include: "#mixedContent"
         }, {

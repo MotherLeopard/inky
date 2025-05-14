@@ -22,21 +22,27 @@
 
 /* Custom Daisy Commands */
 .ace_editor span.ace_textspeed.ace_punctuation,
-.ace_editor span.ace_textspeed {
+.ace_editor span.ace_textspeed 
+{
     color: #eb6ca0
 }
 .ace_editor span.ace_textspeed.ace_number,
 .ace_editor span.ace_textspeed.ace_default.ace_speed,
-.ace_editor span.ace_animation.ace_name 
+.ace_editor span.ace_animationSwitch.ace_name 
 {
     color: #ffee58
 }
 .ace_editor span.ace_pause.ace_punctuation,
-.ace_editor span.ace_pause.ace_length {
+.ace_editor span.ace_pause.ace_length 
+{
     color: #4d9be6
 }
-.ace_editor span.ace_animation.ace_punctuation,
-.ace_editor span.ace_animation {
+.ace_editor span.ace_animationSwitch.ace_punctuation,
+.ace_editor span.ace_animationSwitch,
+.ace_editor span.ace_animationResume.ace_start,
+.ace_editor span.ace_animationResume.ace_end,
+.ace_editor span.ace_animationResume 
+{
     color: #8bc34a
 }
 
