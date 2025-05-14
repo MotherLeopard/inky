@@ -455,6 +455,81 @@ var inkHighlightRules = function() {
                 defaultToken: "logic.tilda"
             }]
         }],
+
+        "#pause": [{
+            regex: /(\[)((\.){1,3})/,
+            token: [
+                "pause.punctuation",    // [
+                "pause.length",         // number of dots .
+            ],
+            push: [{
+                token: "pause.punctuation",
+                regex: /]/,
+                next: "pop"
+            },
+            {
+                include: "#comments"
+            },            
+            {
+                include: "#mixedContent"
+            },            
+            {
+                include: "#tags"
+            },
+            {
+                defaultToken: "pause"
+            }]
+        }],
+
+        "#animation": [{
+            regex: /(\[)(anim\s*\=\s*)(\w+)/,
+            token: [
+                "animation.punctuation",        // [
+                "animation",                    // "anim="
+                "animation.name"                // animation_name (in Godot)
+            ],
+            push: [{
+                token: "animation.punctuation", // ]
+                regex: /]/,
+                next: "pop"
+            },
+            {
+                include: "#comments"
+            },            
+            {
+                include: "#mixedContent"
+            },            
+            {
+                include: "#tags"
+            },
+            {
+                defaultToken: "animation"
+            }]
+        }],
+
+        "#textspeed": [{
+            regex: /(\[)(tspeed\s*\=\s*)(-?)(\d+)/,
+            token: [
+                "textspeed.punctuation",        // [
+                "textspeed",                    // "tspeed = "
+                "textspeed.default.speed",      // minus sig (-)
+                "textspeed.number"              // number
+            ],
+            push: [{
+                token: "textspeed.punctuation", // ]
+                regex: /]/,
+                next: "pop"
+            },{
+                include: "#comments"
+            },{
+                include: "#mixedContent"
+            }, {
+                include: "#tags"
+            }, {
+                defaultToken: "textspeed"
+            }]
+        }],
+
         "#tags": [{
             // e.g. #tag should be highlighted
             token: "tag",
@@ -518,6 +593,12 @@ var inkHighlightRules = function() {
             include: "#endOfSection"
         }, {
             include: "#logicLine"
+        }, {
+            include: "#pause"
+        },{
+            include: "#textspeed"
+        },{
+            include: "#animation"
         }, {
             include: "#mixedContent"
         }, {

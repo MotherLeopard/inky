@@ -172,7 +172,7 @@ async function buildPackageForPlatform(targetPlatform) {
     else if( targetPlatform == "win32" || targetPlatform == "win64" ) {
         opts.platform = "win32";
         opts.arch = targetPlatform == "win32" ? "ia32" : "x64";
-        opts.icon = '../resources/Icon1024.png.ico';
+        opts.icon = '../resources/icon1024_malin_pMf_icon';
         opts.win32metadata = {
             CompanyName: "inkle Ltd",
             FileDescription: "Inky",
